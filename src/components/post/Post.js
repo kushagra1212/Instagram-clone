@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import comments from "../../utils/data/comments";
 import styles from "./Post.module.css";
-const Post = ({ post, large = false }) => {
-  const [postComments, setPostComments] = useState([]);
-  const [isUnmounted, setIsUnmounter] = useState(false);
+
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+const Post = ({ post, large = false, likesHandler, comments }) => {
   const navigate = useNavigate();
-  const getCommentsHandler = () => {
-    setPostComments(comments[post.code]);
-  };
+  const [liked, setLiked] = useState(false);
+
   const commentsHandler = () => {
     navigate("/comments", {
-      state: { post, postComments },
+      state: { code: post.code },
     });
   };
   useEffect(() => {
-    if (!isUnmounted) {
-      getCommentsHandler();
+    let timer;
+    if (liked) {
+      timer = setTimeout(() => {
+        setLiked(false);
+      }, 1500);
     }
-    return () => setIsUnmounter(true);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [liked]);
   return (
     <div
       className={styles.post}
@@ -34,18 +37,44 @@ const Post = ({ post, large = false }) => {
           : {}
       }
     >
-      <div className={styles.upperHalf}>
-        <img
-          src={post.display_src}
-          alt="Post thumbnail"
+      <div
+        onClick={large ? null : commentsHandler}
+        className={styles.upperHalf}
+      >
+        {liked ? (
+          <div className={styles.likedDiv}>
+            <div className={styles.heart}>
+              <img
+                alt="heart"
+                wdith="100%"
+                height="100%"
+                src={process.env.PUBLIC_URL + "whiteheart.png"}
+              />
+              <h1
+                style={{ position: "absolute", fontSize: "2em", color: "blue" }}
+              >
+                {post.likes}
+              </h1>
+            </div>
+          </div>
+        ) : null}
+        <LazyLoadImage
+          alt="Post"
+          effect="blur"
           width="100%"
           height="auto"
+          src={post.display_src}
         />
       </div>
       <div className={styles.lowerHalf}>
         <p style={{ textAlign: "center" }}>{post.caption}</p>
         <div className={styles.buttonsDiv}>
-          <button>
+          <button
+            onClick={() => {
+              setLiked(true);
+              likesHandler(post.code);
+            }}
+          >
             <span>💙</span>&nbsp;<span>{post.likes}</span>
           </button>
           <button
@@ -59,7 +88,8 @@ const Post = ({ post, large = false }) => {
             }
             onClick={commentsHandler}
           >
-            <span>💬</span>&nbsp;{postComments ? postComments.length : 0}
+            <span>💬</span>&nbsp;
+            {comments ? comments.length : 0}
             <span></span>
           </button>
         </div>
