@@ -14,7 +14,6 @@ function App() {
   const dispatch = useDispatch();
   const initialLzer = () => {
     let data = getDataFromLocalStorage();
-    console.log(data);
     if (data) {
       dispatch(updatePosts(data.posts));
       dispatch(updateComments(data.comments));
