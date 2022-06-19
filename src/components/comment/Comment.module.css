@@ -1,0 +1,18 @@
+.comment {
+  padding: 0.8em 0.4em 0.8em 0px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.user {
+  font-size: 0.8em;
+  margin-right: 0.7em;
+  cursor: pointer;
+  font-weight: 800;
+  color: rgb(0, 86, 175);
+}
+
+.text {
+  font-size: 0.9em;
+  color: rgb(89, 92, 91);
+  font-weight: 500;
+}

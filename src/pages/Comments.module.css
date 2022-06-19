@@ -1,0 +1,62 @@
+.card {
+  display: flex;
+  max-width: 60%;
+  min-height: 500px;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: auto;
+  padding: 1em;
+  border: 4px solid rgb(241, 241, 241);
+}
+.postDiv {
+  width: "56%";
+}
+.commentForm {
+  display: flex;
+  flex-direction: column;
+}
+.author,
+.text {
+  outline: none;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-image: initial;
+  color: rgb(89, 92, 91);
+  padding: 0.8em 0.5em 0.5em 0em;
+  border-bottom: 1px solid rgb(238, 238, 238);
+}
+.commentBox {
+  width: 40%;
+
+  margin-left: 1em;
+}
+.submitButton {
+  border: 1px solid rgb(216, 216, 216);
+  height: 40px;
+  margin: 1em 0.5em 0.5em 0px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(11, 89, 137);
+  cursor: pointer;
+  box-shadow: rgb(238 238 238) 1px 1px 2px 2px;
+  transition: color 0.3s ease-in 0s, background-color 0.3s ease-in 0s;
+}
+.submitButton:hover,
+.submitButton:active {
+  color: rgb(255, 255, 255);
+  background-color: rgb(11, 89, 137);
+}
+@media only screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    max-width: 80%;
+  }
+  .commentBox {
+    width: 100%;
+
+    margin-left: 0em;
+  }
+  .postDiv {
+    width: "100%";
+  }
+}

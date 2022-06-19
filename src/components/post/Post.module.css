@@ -1,0 +1,69 @@
+.post {
+  position: relative;
+  cursor: pointer;
+  border: 4px solid rgb(241, 241, 241);
+  box-shadow: 0px 0px 0px 0px rgba(128, 128, 128, 0.707);
+  transform: scale(1);
+  animation: box-shadow, transform linear alternate 1s;
+  margin: 0.5% 1.5%;
+  min-height: 450px;
+}
+
+.post:hover {
+  transform: scale(1.004);
+  box-shadow: 0px 0px 20px 0px rgba(128, 128, 128, 0.421);
+}
+.lowerHalf {
+  padding-top: 1em;
+}
+.buttonsDiv {
+  padding: 1em 0em;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.buttonsDiv button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(216, 216, 216);
+  height: 40px;
+  min-width: 45%;
+  max-width: 150px;
+  margin: 0.5em 0.5em 0.5em 0px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(11, 89, 137);
+  cursor: pointer;
+  box-shadow: rgb(238 238 238) 1px 1px 2px 2px;
+  transition: color 0.3s ease-in 0s, background-color 0.3s ease-in 0s;
+}
+.buttonsDiv button:active,
+button:hover {
+  color: rgb(255, 255, 255);
+  background-color: rgb(11, 89, 137);
+}
+
+@media only screen and (max-width: 1000px) {
+  .post {
+    width: 45%;
+
+    min-height: 500px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .buttonsDiv Button {
+    min-width: 90%;
+  }
+}
+@media only screen and (max-width: 530px) {
+  .post {
+    width: 90%;
+    margin: 4% 1.5%;
+  }
+}
+
+@media only screen and (min-width: 1001px) {
+  .post {
+    width: 28%;
+  }
+}
